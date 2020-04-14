@@ -162,7 +162,7 @@ export default {
         }
         &:first-child{
           font-weight: 600;
-          color: red;
+          color: #fff;
         }
       }
       
