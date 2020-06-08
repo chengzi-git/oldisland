@@ -18,6 +18,11 @@
                         changeOrigin: true,
                         pathRewrite: { "^/ints": "" }
                     },
+                    "/fys": {
+                        target: "http://fy.iciba.com/ajax.php",
+                        changeOrigin: true,
+                        pathRewrite: { "^/fys": "" }
+                    },
                 }
             }
         }

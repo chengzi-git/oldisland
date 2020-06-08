@@ -25,7 +25,7 @@
 <style lang="scss" scoped>
 .wrapper {
   width: 80%;
-  min-width: 1200px;
+  min-width: 1203px;
   margin: 0 auto;
   margin-top: 20px;
   padding-bottom: 50px;
@@ -38,7 +38,7 @@
     position: relative;
     background-color: #fff;
     display: inline-block;
-    margin-right: 21px;
+    margin-right: 15px;
     cursor: pointer;
     text-align: center;
     padding-top: 43px;

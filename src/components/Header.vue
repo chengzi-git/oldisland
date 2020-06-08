@@ -37,7 +37,8 @@
               @blur.prevent="changeCount"
               @focus="focusfns"
               v-model="searchText"
-              placeholder="请输入您要翻译的单词"
+              placeholder="请输入您要翻译的单词或句子"
+              @keyup.enter="search"
             />
             <button class="button" @click="search">
               <i class="fa fa-search"></i>
@@ -46,7 +47,7 @@
         </div>
         <div class="interface" v-show="faceChange">
           <ul class="interface-list">
-            <li class="interface-item" v-for="(item,i) in this.interface" :key="i">
+            <li  @click="dianji" class="interface-item" v-for="(item,i) in this.interface" :key="i" >
               <i class="item-key">{{item.key}}</i>
               {{item.paraphrase}}
             </li>
@@ -68,6 +69,9 @@ export default {
     };
   },
   methods: {
+    dianji(){
+      console.log(123)
+    },
     isChang() {
       this.ischang = !this.ischang;
     },
@@ -77,7 +81,15 @@ export default {
           `/cont?a=getWordMean&c=search&list=1%2C2%2C3%2C4%2C5%2C8%2C9%2C10%2C12%2C13%2C14%2C18%2C21%2C22%2C3003%2C3005&word=${this.searchText}`
         ).then(res => {
           console.log(res);
-          // this.$router.push({name:'About',params:{name:res.data}})
+          this.$router.push({name:'About',params:{result:res.data}})
+        });
+      }else if(this.searchText && !this.ischang){
+        let text =this.searchText
+        this.axios(
+          `/fys?a=fy&f=auto&t=auto&w=${this.searchText}`
+        ).then(res => {
+          console.log(res.data);
+          this.$router.push({name:'Translate',params:{content:res.data,name:text}})
         });
       }
     },
@@ -149,7 +161,7 @@ export default {
     background: #26282a;
     padding: 0 150px;
     z-index: 99;
-    ul{
+    ul {
       cursor: pointer;
     }
     .header-nav-left {
@@ -157,15 +169,14 @@ export default {
       .nav-tiem {
         float: left;
         margin-right: 20px;
-        &:last-child{
-        margin-right: 0;
+        &:last-child {
+          margin-right: 0;
         }
-        &:first-child{
+        &:first-child {
           font-weight: 600;
           color: #fff;
         }
       }
-      
     }
     .header-nav-right {
       flex: 0 0 200px;
@@ -173,14 +184,14 @@ export default {
       .nav-tiem {
         float: left;
         margin-right: 20px;
-        &:last-child{
-        margin-right: 0;
+        &:last-child {
+          margin-right: 0;
         }
       }
     }
-    .nav-tiem:hover{
-        color: #fff;
-      }
+    .nav-tiem:hover {
+      color: #fff;
+    }
   }
   // 联想布局
   .interface {
@@ -191,19 +202,22 @@ export default {
     width: 606px;
     background-color: #fff;
     overflow: hidden;
-    padding-right: 20px;
+    // padding-right: 20px;
     z-index: 99;
+    .interface-item:hover{
+      background-color: skyblue;
+      cursor: pointer;
+    }
     .interface-item {
       width: 100%;
       height: 40px;
       line-height: 40px;
-      margin-left: 20px;
+      padding: 0 20px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       .item-key {
         font-weight: 600;
-        margin-right: 20px;
       }
     }
   }
