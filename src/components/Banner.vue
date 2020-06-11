@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="wrapper-content">
       <img src="http://cdn.iciba.com/www/img/www/0312/ciba-icon.png" />
-      <h1>金山词霸</h1>
+      <h1>小橙翻译</h1>
       <p>多端数据云端同步，支持多个设备</p>
       <p>拍照语音翻译，支持英法日等7国语音</p>
       <ul>

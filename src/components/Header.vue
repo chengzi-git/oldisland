@@ -23,7 +23,7 @@
         </div>
         <div class="header-content">
           <div class="content-text">
-            <p class="text-title">金山词霸</p>
+            <p class="text-title">小橙翻译</p>
             <p class="text-wrap">{{text}}</p>
           </div>
           <div class="content-inp">
@@ -76,6 +76,12 @@ export default {
       this.ischang = !this.ischang;
     },
     search() {
+      this.axios(
+          `/cont?a=getWordMean&c=search&list=1%2C2%2C3%2C4%2C5%2C8%2C9%2C10%2C12%2C13%2C14%2C18%2C21%2C22%2C3003%2C3005&word=${this.searchText}`
+        ).then(res => {
+          console.log(res);
+          // this.$router.push({name:'About',params:{result:res.data}})
+        });
       if (this.searchText && this.ischang) {
         this.axios(
           `/cont?a=getWordMean&c=search&list=1%2C2%2C3%2C4%2C5%2C8%2C9%2C10%2C12%2C13%2C14%2C18%2C21%2C22%2C3003%2C3005&word=${this.searchText}`
